@@ -1,12 +1,20 @@
 // CommonJs
 import Fastify from 'fastify';
+import { productRoutes } from './routes/products.routes.js';
+import { mongodb } from './utils/mongodb.js';
 
 const fastify = Fastify({
     logger: true,
 });
 
-fastify.get('/', (request, reply) => {
-    reply.send({ hello: 'world' });
+await mongodb();
+
+
+/**
+ * Routes
+ */
+productRoutes.forEach((route) => {
+    fastify.route(route);
 });
 
 /**
