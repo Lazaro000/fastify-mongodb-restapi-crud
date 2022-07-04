@@ -1,4 +1,5 @@
 import { ProductSchema as Product } from '../models/product.model.js';
+import * as Boom from '@hapi/boom';
 
 class ProductController {
     getProducts = async (req, reply) => {
@@ -6,7 +7,9 @@ class ProductController {
             const products = await Product.find();
 
             reply.code(200).send(products);
-        } catch (err) {}
+        } catch (err) {
+            throw Boom.boomify(err);
+        }
     };
 
     getProductById = async (req, reply) => {
@@ -14,7 +17,9 @@ class ProductController {
             const product = await Product.findById(req.params.id);
 
             reply.code(200).send(product);
-        } catch (err) {}
+        } catch (err) {
+            throw Boom.boomify(err);
+        }
     };
 
     saveProduct = async (req, reply) => {
@@ -24,7 +29,9 @@ class ProductController {
             await product.save();
 
             reply.code(201).send(product);
-        } catch (err) {}
+        } catch (err) {
+            throw Boom.boomify(err);
+        }
     };
 
     updateProduct = async (req, reply) => {
@@ -39,7 +46,9 @@ class ProductController {
             );
 
             reply.code(200).send(product);
-        } catch (err) {}
+        } catch (err) {
+            throw Boom.boomify(err);
+        }
     };
 
     deleteProduct = async (req, reply) => {
@@ -47,7 +56,9 @@ class ProductController {
             await Product.findByIdAndDelete(req.params.id);
 
             reply.code(204).send();
-        } catch (err) {}
+        } catch (err) {
+            throw Boom.boomify(err);
+        }
     };
 }
 
