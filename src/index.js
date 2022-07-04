@@ -2,6 +2,9 @@
 import Fastify from 'fastify';
 import { productRoutes } from './routes/products.routes.js';
 import { mongodb } from './utils/mongodb.js';
+import * as swagger from '@fastify/swagger';
+import { swaggerOptions } from './utils/swagger.js';
+import * as fs from 'fs';
 
 const fastify = Fastify({
     logger: true,
@@ -9,6 +12,7 @@ const fastify = Fastify({
 
 await mongodb();
 
+await fastify.register(swagger, swaggerOptions);
 
 /**
  * Routes
@@ -24,6 +28,8 @@ const start = async () => {
     try {
         await fastify.listen({ port: 3000 });
 
+        fastify.swagger();
+
         fastify.log.info(
             `Server listening on ${fastify.server.address().port}`
         );
@@ -35,3 +41,9 @@ const start = async () => {
 };
 
 start();
+
+/**
+ * Create swagger local file
+ */
+const yaml = fastify.swagger({ yaml: true });
+fs.writeFileSync('./swagger.yml', yaml);

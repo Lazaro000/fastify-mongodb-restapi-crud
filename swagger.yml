@@ -1,0 +1,39 @@
+swagger: '2.0'
+info:
+  title: Swagger
+  description: Swagger API
+  version: 1.0.0
+definitions: {}
+paths:
+  /products:
+    get:
+      responses:
+        '200':
+          description: Default Response
+    post:
+      responses:
+        '200':
+          description: Default Response
+  /products/{id}:
+    get:
+      responses:
+        '200':
+          description: Default Response
+    put:
+      responses:
+        '200':
+          description: Default Response
+    delete:
+      responses:
+        '200':
+          description: Default Response
+host: localhost:3000
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+externalDocs:
+  url: https://swagger.io
+  description: Find more info here
