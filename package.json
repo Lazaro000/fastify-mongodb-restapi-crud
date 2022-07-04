@@ -20,6 +20,7 @@
         "eslint-plugin-promise": "6.0.0",
         "husky": "8.0.1",
         "lint-staged": "12.4.3",
+        "mongodb-memory-server": "8.7.2",
         "nodemon": "2.0.16",
         "prettier": "2.6.2"
     },
@@ -31,9 +32,9 @@
         "*.{js,md}": "prettier --write"
     },
     "dependencies": {
+        "@fastify/swagger": "7.4.1",
         "boom": "7.3.0",
         "fastify": "4.2.0",
-        "fastify-swagger": "5.2.0",
         "mongoose": "6.4.2"
     }
 }
